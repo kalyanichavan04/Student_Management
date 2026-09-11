@@ -1,0 +1,4 @@
+FastAPI
+Uvicorn
+Supabase
+python-dotenv
