@@ -1,4 +1,4 @@
-const API_URL = "const API_URL = "https://student-management-2-4scm.onrender.com";
+const API_URL = const API_URL = "https://student-management-2-4scm.onrender.com";
 
 const studentForm = document.getElementById("studentForm");
 const studentTable = document.getElementById("studentTable");
