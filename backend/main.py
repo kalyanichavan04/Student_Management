@@ -32,7 +32,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://student-management-git-main-astro-6253.vercel.app/",  # your deployed frontend
+        "https://student-management-astro-6253.vercel.app ",  # your deployed frontend
         "http://localhost:3000",  # optional: local frontend testing
         "http://127.0.0.1:5500",  # optional: VSCode Live Server, etc.
     ],
