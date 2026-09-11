@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from supabase import create_client
 from dotenv import load_dotenv
 import os
@@ -22,6 +23,23 @@ print("URL loaded:", SUPABASE_URL)
 print("KEY loaded:", bool(SUPABASE_KEY))
 
 app = FastAPI()
+
+# ==============================
+# CORS CONFIGURATION
+# ==============================
+# Without this, browsers block requests coming from a different
+# domain (e.g. your Vercel frontend calling this Render backend).
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://student-management-git-main-astro-6253.vercel.app/",  # your deployed frontend
+        "http://localhost:3000",  # optional: local frontend testing
+        "http://127.0.0.1:5500",  # optional: VSCode Live Server, etc.
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 supabase = create_client(
     SUPABASE_URL,
@@ -55,7 +73,7 @@ def create_student(name: str, course: str, marks: int):
         "message": "Student created successfully",
         "data": response.data
     }
-    
+
 
 # GET all students
 @app.get("/students")
@@ -109,6 +127,3 @@ def delete_student(student_id: int):
     )
 
     return response.data
-
-
-
